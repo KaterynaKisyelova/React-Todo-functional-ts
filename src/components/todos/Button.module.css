@@ -1,0 +1,44 @@
+.delete {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  border: none;
+  background: none;
+  margin-bottom: 16px;
+  transition: color 0.2s ease-out;
+  color: #cc9a9a;
+}
+
+.delete:hover {
+  color: #af5b5e;
+}
+
+.delete:before {
+  content: "";
+  display: block;
+  position: absolute;
+  margin: auto;
+  height: 17px;
+  top: 50%;
+  left: 50%;
+  translate: -50%;
+  width: 3px;
+  background-color: currentColor;
+  transform: rotate(45deg);
+}
+
+.delete:after {
+  content: "";
+  margin: auto;
+  display: block;
+  left: 50%;
+  translate: -50%;
+  position: absolute;
+  height: 17px;
+  width: 3px;
+  background-color: currentColor;
+  transform: rotate(-45deg);
+}
