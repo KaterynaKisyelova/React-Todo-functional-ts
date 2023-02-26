@@ -1,13 +1,14 @@
-import { get } from "./store/todoSlice";
+import { get } from "../store/todoSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Footer from "./components/footer/Footer";
-import Header from "./components/header/Header";
-import Todos from "./components/todos/Todos";
+import Footer from "./footer/Footer";
+import Header from "./header/Header";
+import Todos from "./todos/Todos";
 import styles from "./Todo.module.css";
+import { AppDispatch } from "../store/store";
 
 function TodoApp() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(get());

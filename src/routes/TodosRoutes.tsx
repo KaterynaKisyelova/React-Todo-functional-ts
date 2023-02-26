@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import List from "../components/todos/List";
-import TodoApp from "../TodoApp";
+import TodoApp from "../components/TodoApp";
 import { RootState } from "../store/store";
 
 function TodosRoutes() {
