@@ -1,14 +1,11 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import List from "../components/todos/List";
 import TodoApp from "../TodoApp";
-import { TodoItem } from "../types/todoTypes";
+import { RootState } from "../store/store";
 
 function TodosRoutes() {
-  const todos = useSelector(
-    (state: { todoReducer: { list: TodoItem[] } }) => state.todoReducer.list
-  );
+  const todos = useSelector((state: RootState) => state.todoReducer.list);
 
   return (
     <Routes>

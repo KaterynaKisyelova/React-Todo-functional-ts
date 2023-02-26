@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store/store";
 import { edit, remove } from "../../store/todoSlice";
 import styles from "./EditInput.module.css";
 
@@ -10,7 +11,7 @@ type Props = {
 
 function EditInput({ title, id }: Props) {
   const [newTitle, setNewTitle] = useState(title);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setNewTitle(e.target.value);

@@ -1,22 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  EditPayload,
+  IdPayload,
+  TodoItem,
+  TotoSliceState,
+} from "../types/todoTypes";
 
 const TODOS_KEY = "todos";
 
-type TodoItem = {
-  title: string;
-  completed: boolean;
-  id: string;
-};
-
-const initialState: { list: TodoItem[] } = {
+const initialState: TotoSliceState = {
   list: [],
 };
 
-function saveToLS(todos: TodoItem[]) {
+function saveToLocalStorage(todos: TodoItem[]) {
   localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
 }
 
-function getFromLS() {
+function getFromLocalStorage() {
   const todos = localStorage.getItem(TODOS_KEY);
 
   if (todos) {
@@ -31,26 +31,26 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     get: (state) => {
-      state.list = getFromLS();
+      state.list = getFromLocalStorage();
     },
 
-    add: (state, action) => {
+    add: (state, action: PayloadAction<TodoItem>) => {
       state.list.push(action.payload);
-      saveToLS(state.list);
+      saveToLocalStorage(state.list);
     },
 
-    remove: (state, action) => {
+    remove: (state, action: PayloadAction<IdPayload>) => {
       state.list = state.list.filter((item) => item.id !== action.payload.id);
-      saveToLS(state.list);
+      saveToLocalStorage(state.list);
     },
 
-    edit: (state, action) => {
+    edit: (state, action: PayloadAction<EditPayload>) => {
       state.list = state.list.map((item) =>
         item.id === action.payload.id
           ? { ...item, ...action.payload.changes }
           : item
       );
-      saveToLS(state.list);
+      saveToLocalStorage(state.list);
     },
 
     toggleAll: (state) => {
@@ -59,18 +59,18 @@ export const todoSlice = createSlice({
           todo.completed === false ? { ...todo, completed: true } : todo
         );
 
-        saveToLS(state.list);
+        saveToLocalStorage(state.list);
         return;
       }
 
       state.list.forEach((todo) => (todo.completed = false));
 
-      saveToLS(state.list);
+      saveToLocalStorage(state.list);
     },
 
     clear: (state) => {
       state.list = state.list.filter((todo) => todo.completed !== true);
-      saveToLS(state.list);
+      saveToLocalStorage(state.list);
     },
   },
 });

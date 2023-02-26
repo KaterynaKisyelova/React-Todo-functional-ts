@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./Header.module.css";
-import { useDispatch } from "react-redux";
 import { add } from "../../store/todoSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store/store";
 
 function Header() {
   const [text, setText] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   function onFormSubmit(e: React.FormEvent) {
     e.preventDefault();

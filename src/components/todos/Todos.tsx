@@ -3,13 +3,16 @@ import { toggleAll } from "../../store/todoSlice";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
 import styles from "./Todos.module.css";
+import { AppDispatch } from "../../store/store";
 
 function Todos() {
   const [isChecked, setIsChecked] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  function onCheckboxChange() {
-    setIsChecked(!isChecked);
+  function onCheckboxChange(e: React.ChangeEvent) {
+    const input = e.target as HTMLInputElement;
+
+    setIsChecked(input.checked);
     dispatch(toggleAll());
   }
 

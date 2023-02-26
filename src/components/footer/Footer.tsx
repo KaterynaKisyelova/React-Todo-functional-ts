@@ -3,15 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { clear } from "../../store/todoSlice";
 import styles from "./Footer.module.css";
-import { TodoItem } from "../../types/todoTypes";
+import { AppDispatch, RootState } from "../../store/store";
 
 function Footer() {
   const [activeCount, setActiveCount] = useState(0);
   const [hasCompleted, setHasCompleted] = useState(false);
-  const dispatch = useDispatch();
-  const todos = useSelector(
-    (state: { todoReducer: { list: TodoItem[] } }) => state.todoReducer.list
-  );
+  
+  const dispatch = useDispatch<AppDispatch>();
+  const todos = useSelector((state: RootState) => state.todoReducer.list);
 
   useEffect(() => {
     setActiveCount(todos.filter((todo) => todo.completed === false).length);
