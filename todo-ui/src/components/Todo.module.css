@@ -1,0 +1,16 @@
+.todoapp {
+  background: #fff;
+  margin: 130px auto 40px auto;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
+  min-width: 230px;
+  max-width: 550px;
+}
+
+.load {
+  margin: 10% auto 0;
+  width: 200px;
+  text-align: center;
+  font-size: 2rem;
+  color: rgba(175, 47, 47, 0.35);
+}
